@@ -8,7 +8,7 @@
                         <form action="/odoo_share_fedorkolmykow/odoo_share_fedorkolmykow/" method="post" enctype="multipart/form-data">
                             <h1>File Upload</h1>
                             <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                            <p><input type="file" name="attachment"/></p>
+                            <p><input type="file" name="File"/></p>
                             <p><input type="submit" value="Upload"/></p>
                             <t t-foreach="files" t-as="file">
                               <p>
