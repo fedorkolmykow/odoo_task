@@ -7,10 +7,15 @@ PATH_TO_SHARE = '/home/fedor/share'
 class OdooShareFedorkolmykow(http.Controller):
     @http.route('/odoo_share_fedorkolmykow/odoo_share_fedorkolmykow/', auth='user', methods=['GET', 'POST'], website=True)
     def upload(self, **kw):
+        user = http.request.env['res.users'].browse(http.request.session.pre_uid)
+
+        if not user.has_group('base.group_erp_manager'):
+            return
+
         path = os.getenv('PATH_TO_SHARE', PATH_TO_SHARE)
-        if kw.get('attachment', False):
-            name = kw.get('attachment').filename
-            file = kw.get('attachment')
+        if kw.get('File', False):
+            name = kw.get('File').filename
+            file = kw.get('File')
             file.save(os.path.join(path, name))
         files = os.listdir(path)
         return http.request.render('odoo_share_fedorkolmykow.uploading', {
@@ -21,16 +26,3 @@ class OdooShareFedorkolmykow(http.Controller):
     def download(self, file, **kw):
         path = os.getenv('PATH_TO_SHARE', PATH_TO_SHARE)
         return http.send_file(os.path.join(path, file))
-
-#     @http.route('/odoo_share_fedorkolmykow/odoo_share_fedorkolmykow/objects/', auth='public')
-#     def list(self, **kw):
-#         return http.request.render('odoo_share_fedorkolmykow.listing', {
-#             'root': '/odoo_share_fedorkolmykow/odoo_share_fedorkolmykow',
-#             'objects': http.request.env['odoo_share_fedorkolmykow.odoo_share_fedorkolmykow'].search([]),
-#         })
-
-#     @http.route('/odoo_share_fedorkolmykow/odoo_share_fedorkolmykow/objects/<model("odoo_share_fedorkolmykow.odoo_share_fedorkolmykow"):obj>/', auth='public')
-#     def object(self, obj, **kw):
-#         return http.request.render('odoo_share_fedorkolmykow.object', {
-#             'object': obj
-#         })
