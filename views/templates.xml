@@ -1,0 +1,27 @@
+<odoo>
+    <data>
+        <template id ="uploading">
+            <t t-call="website.layout">
+                <t t-set="title">Share</t>
+                <div class="oe_structure">
+                    <div class="container">
+                        <form action="/odoo_share_fedorkolmykow/odoo_share_fedorkolmykow/" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <p><input type="file" name="attachment"/></p>
+                            <p><input type="submit" value="Upload"/></p>
+                            <t t-foreach="files" t-as="file">
+                              <p>
+                                  <a t-attf-href="/odoo_share_fedorkolmykow/odoo_share_fedorkolmykow/download/#{ file }" download="">
+                                    <t t-esc="file"/>
+                                  </a>
+                              </p>
+                            </t>
+                        </form>
+                    </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>
+
+
