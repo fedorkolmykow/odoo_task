@@ -3,11 +3,10 @@
     'name': "OdooShare_fedorkolmykow",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+        It is test module. Here you can upload and download files.""",
 
     'description': """
-        Long description of module's purpose
+        It is test module. Here you can upload and download files.
     """,
 
     'author': "fedorkolmykow",
