@@ -2,7 +2,7 @@
 from odoo import http
 import os
 
-PATH_TO_SHARE = '/home/fedor/share'
+PATH_TO_SHARE = '/tmp'
 
 class OdooShareFedorkolmykow(http.Controller):
     @http.route('/odoo_share_fedorkolmykow/odoo_share_fedorkolmykow/', auth='user', methods=['GET', 'POST'], website=True)
